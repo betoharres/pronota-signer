@@ -35,7 +35,7 @@ if (!String.prototype.splice) {
     }
 }
 
-function renderSignature (xml, id = '', cert, privateKey) {
+function renderSignature (xml, id = '', certificatePem, privateKey) {
 
   let c14nXml = xml.replace(/\r\n/g, '\n')
   c14nXml = c14nXml.replace(/\sxmlns="http:\/\/www\.abrasf\.org\.br\/nfse\.xsd"/, '')
@@ -68,7 +68,7 @@ function renderSignature (xml, id = '', cert, privateKey) {
                       '<SignedInfo>' + signedInfoContent + '</SignedInfo>' +
                       '<SignatureValue>' + signatureValue + '</SignatureValue>' +
                       '<KeyInfo><X509Data><X509Certificate>' +
-                        certPem +
+                        certificatePem +
                       '</X509Certificate></X509Data></KeyInfo>' +
                     '</Signature>'
 
