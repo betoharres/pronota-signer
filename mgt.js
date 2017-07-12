@@ -1,10 +1,9 @@
 const forge = require('node-forge')
 const dom = require('xmldom').DOMParser
 
-function loadCert (certificate, pass) {
-
-  let p12b64 = Buffer(certificate).toString('base64')
-  let p12Der = forge.util.decode64(p12b64)
+function loadCert (certificateBase64, pass) {
+  // let p12b64 = Buffer(certificateBase64).toString('base64')
+  let p12Der = forge.util.decode64(certificateBase64)
   let p12Asn1 = forge.asn1.fromDer(p12Der)
   let p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, pass)
 
