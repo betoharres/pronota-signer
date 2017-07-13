@@ -1,5 +1,6 @@
 {
   "name": "pronota-signer",
+  "engines" : { "node" : ">=8.14" },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
