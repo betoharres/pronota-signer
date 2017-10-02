@@ -7,8 +7,9 @@ app.set('port', (process.env.PORT || 5000))
 app.use(bodyParser.json())
 
 app.post('/', function(req, res) {
-  const xmlSigned = sign.sign(req.body.xml, req.body.certificate, req.body.pass)
-  res.send(req.body)
+  const { xml, certificate, pass } = req.body
+  const xmlSigned = sign.sign(xml, certificate, pass)
+  res.send(xmlSigned)
 })
 
 app.listen(app.get('port'), function() {
