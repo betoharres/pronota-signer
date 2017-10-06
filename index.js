@@ -7,9 +7,13 @@ app.set('port', (process.env.PORT || 5000))
 app.use(bodyParser.json())
 
 app.post('/', function(req, res) {
-  const { xml, certificate, pass } = req.body
-  const xmlSigned = sign.sign(xml, certificate, pass)
-  res.send(xmlSigned)
+  const { xml, certificate, password } = req.body
+  if (xml && certificate && password) {
+    const xmlSigned = sign.sign(xml, certificate, password)
+    res.send(xmlSigned)
+  } else {
+    res.send('Empty required attributes. {sign: {xml, certificate, password}}')
+  }
 })
 
 app.listen(app.get('port'), function() {
