@@ -12,7 +12,8 @@ app.post('/', function(req, res) {
     const xmlSigned = sign.sign(xml, certificate, password)
     res.send(xmlSigned)
   } else {
-    res.send('Empty required attributes. {sign: {xml, certificate, password}}')
+    res.status(400)
+    res.json({error: 'Empty required attributes. {sign: {xml, certificate, password}}'})
   }
 })
 
