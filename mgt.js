@@ -93,9 +93,10 @@ exports.sign = function (xml, cert, pass) {
   const loteDocString = loteDoc.toString()
   const loteId = loteDoc.getAttribute('Id')
   const loteWithSignedRps = loteDocString.splice(loteDocString.search('</Rps>'), 0, rpsSig)
-  const loteSig = renderSignature(loteWithSignedRps, `#${loteId}`)
+  const loteSig = renderSignature(loteWithSignedRps, `#${loteId}`, certificate, privateKey)
 
   let finalXml = xml.splice(xml.search('</Rps>'), 0, rpsSig)
   finalXml = finalXml.splice(finalXml.search('</EnviarLoteRpsEnvio>'), 0, loteSig)
-  const finalDoc = new dom().parseFromString(finalXml)
+  // const finalDoc = new dom().parseFromString(finalXml)
+  return finalXml
 }
