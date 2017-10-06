@@ -78,6 +78,11 @@ exports.sign = function (xml, cert, pass) {
   const { certificate, privateKey } = loadCert(cert, pass)
 
   xml = xml.replace(/>\s*</g, '><')
+  xml = '<?xml version="1.0" encoding="UTF-8"?>' +
+        '<EnviarLoteRpsEnvio xmlns="http://www.abrasf.org.br/nfse.xsd">'
+        + xml +
+        '</EnviarLoteRpsEnvio>'
+
   const doc = new dom().parseFromString(xml)
 
   const rpsDoc = doc.getElementsByTagName('InfRps')[0]
